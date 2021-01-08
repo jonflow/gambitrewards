@@ -1,0 +1,44 @@
+// Command 1 of 2
+// Switch to your GambitRewards browser tab. Go to Developer Tools or Inspect.
+// Find the Console. Paste this in the Console.
+
+const gambitToken = window.localStorage.getItem('token');
+const headers = new Headers();
+headers.append('Authorization', gambitToken);
+headers.append('Content-Type', 'application/json');
+
+const body = `{"swagbucks_point":{"amount":10}}`;
+
+const init = {
+  method: 'POST',
+  headers,
+  body
+};
+
+//End Command 1
+
+---
+
+// Command 2 of 2
+// Change the number after "gambitToSB" to how many times you want to withdraw 10 tokens to SB.
+// REMEMBER---- Leaving this set to 100 will withdraw 1000 tokens.
+// Switch to your GambitRewards browser tab. Go to Developer Tools or Inspect.
+// Find the Console. Paste this in the Console.
+
+var gambitToSB = 100;
+var gambitDelivery = 0;
+
+while (gambitDelivery < gambitToSB) {
+fetch('https://api-production.gambitrewards.com/api/v1/swagbucks_points', init)
+.then((response) => {
+  return response.json();
+})
+.then((text) => {
+})
+.catch((e) => {
+  // error in e.message
+});
+gambitDelivery = gambitDelivery + 1
+}
+
+// End Command 2
